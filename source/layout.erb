@@ -12,13 +12,13 @@
     <title>10K Random by Eric Tarn and Matthew Moore</title>
 
     <%= stylesheet_link_tag "site.css" %>
-    <%= javascript_include_tag 'application' %>
+    <%= javascript_include_tag 'json2', 'modernizr', 'jso','application' %>
     <%= yield_content :head %>
   </head>
 
   <body class="<%= page_classes %>">
 
-    <div id="main" role="main">
+    <div id="main" role="main" style="display:none;">
       <%= yield %>
     </div>
 
