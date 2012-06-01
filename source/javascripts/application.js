@@ -23,7 +23,6 @@ $(document).ready(function () {
         }
       }
     }
-    var me;
 
     jso_configure({ redu : config });
 
