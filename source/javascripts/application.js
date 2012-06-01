@@ -223,6 +223,7 @@ function endGame() {
   $("#score").html(score);
   $(".share").unbind("click").show().click(function(){
       $.fn.wallPost("Acabei de fazer " + score + " pontos no jogo das palavras!");
+      return false;
   });
 
   if (score <= 4) {
