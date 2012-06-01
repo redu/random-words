@@ -7,34 +7,47 @@ $(document).ready(function () {
       presenttoken: "qs",
       isDefault : true
     }
+    oajaxConfig = {
+      jso_provider: "redu",
+      jso_allowia: true,
+      success: function(data) {
+        if (callback !== undefined) {
+          callback(data);
+        }
+        console.log("Response (redu):");
+        console.log(data);
+      },
+      error : function(data) {
+        if(errback !== undefined){
+          errback(data);
+        }
+      }
+    }
+    var me;
 
     jso_configure({ redu : config });
 
     if(jso_getToken("redu") !== null) {
       $("#main").show(function(){
           $.fn.startup();
+          var options = $.extend(oajaxConfig, { url : 'http://www.redu.com.br/api/me',
+              success : function(data) { me = data; }
+          })
+          $.oajax(options);
       });
     } else {
-      jso_ensureTokens({ "redu" : false });
+      jso_ensureTokens({ 'redu'  : false });
     }
 });
 
 $.fn.wallPost = function(message, callback, errback) {
-  $.oajax({
-      url: "http://www.redu.com.br/api/users/guiocavalcanti/statuses",
+  var options = $.extend(oajaxConfig, {
+      url: href_to('statuses', me['links']),
       type : 'post',
       data : { 'status' : { 'text' : message }},
-      jso_provider: "redu",
-      jso_allowia: true,
-      success: function(data) {
-        callback(data);
-        console.log("Response (redu):");
-        console.log(data);
-      },
-      error : function(data) {
-        errback(data);
-      }
   });
+
+  $.oajax(options);
 }
 
 $.fn.startup = function(user) {
@@ -51,6 +64,13 @@ $.fn.startup = function(user) {
       a += "<span class='" + r + "'>" + c + "</span>"
   });
   $("h1:first").html(a)
+}
+
+var href_to = function(rel, links) {
+  for(var i = 0; i < links.length; i++) {
+    if(links[i]['rel'] === rel)
+      return links[i]['href'];
+  }
 }
 
 var alphabetArray = new Array();
