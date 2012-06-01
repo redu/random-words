@@ -1,0 +1,52 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>~/workspace/work/forca_canvas/source/javascripts/authentication.js.html</title>
+<meta name="Generator" content="Vim/7.3">
+<meta name="plugin-version" content="vim7.3_v10">
+<meta name="syntax" content="javascript">
+<meta name="settings" content="number_lines,use_css,pre_wrap,expand_tabs">
+<style type="text/css">
+<!--
+pre { white-space: pre-wrap; font-family: monospace; color: #839496; background-color: #002b36; }
+body { font-family: monospace; color: #839496; background-color: #002b36; }
+.lnr { color: #586e75; background-color: #073642; }
+.Special { color: #dc322f; }
+.Constant { color: #2aa198; }
+.Identifier { color: #268bd2; }
+.Statement { color: #719e07; }
+-->
+</style>
+</head>
+<body>
+<pre>
+<span class="lnr"> 1 </span>$(<span class="Statement">document</span>).ready(<span class="Identifier">function</span>()<span class="Identifier">{</span>
+<span class="lnr"> 2 </span>    <span class="Identifier">var</span> consumer_key = <span class="Constant">'Qex0Dle9BDHaLFg6Me4BpRZIIn4pHiSHlbNgm2Jr'</span>;
+<span class="lnr"> 3 </span>    <span class="Identifier">var</span> config = <span class="Identifier">{</span>
+<span class="lnr"> 4 </span>      client_id: consumer_key,
+<span class="lnr"> 5 </span>      redirect_uri: <span class="Constant">&quot;<a href="http://0.0.0.0:4567/auth.html">http://0.0.0.0:4567/auth.html</a>&quot;</span>,
+<span class="lnr"> 6 </span>      authorization: <span class="Constant">&quot;<a href="http://www.redu.com.br/oauth/authorize">http://www.redu.com.br/oauth/authorize</a>&quot;</span>,
+<span class="lnr"> 7 </span>      presenttoken: <span class="Constant">&quot;qs&quot;</span>,
+<span class="lnr"> 8 </span>      isDefault : <span class="Constant">true</span>
+<span class="lnr"> 9 </span>    <span class="Identifier">}</span>
+<span class="lnr">10 </span>
+<span class="lnr">11 </span>    jso_configure(<span class="Identifier">{</span> redu : config <span class="Identifier">}</span>);
+<span class="lnr">12 </span>
+<span class="lnr">13 </span>    $.oajax(<span class="Identifier">{</span>
+<span class="lnr">14 </span>        url : <span class="Constant">'<a href="http://redu.com.br/api/me">http://redu.com.br/api/me</a>'</span>,
+<span class="lnr">15 </span>        jso_provider: <span class="Constant">&quot;redu&quot;</span>,
+<span class="lnr">16 </span>        jso_allowia: <span class="Constant">true</span>,
+<span class="lnr">17 </span>        success: <span class="Identifier">function</span>(data) <span class="Identifier">{</span>
+<span class="lnr">18 </span>          <span class="Identifier">var</span> $pre = $(<span class="Constant">&quot;&lt;pre/&gt;&quot;</span>).text(JSON.stringify(data, <span class="Statement">null</span>, <span class="Special">'\t'</span>));
+<span class="lnr">19 </span>          $(<span class="Constant">&quot;body&quot;</span>).append($pre);
+<span class="lnr">20 </span>        <span class="Identifier">}</span>,
+<span class="lnr">21 </span>        error : <span class="Identifier">function</span>(data) <span class="Identifier">{</span>
+<span class="lnr">22 </span>          console.log(<span class="Constant">&quot;Error (redu):&quot;</span>)
+<span class="lnr">23 </span>          console.log(data);
+<span class="lnr">24 </span>        <span class="Identifier">}</span>
+<span class="lnr">25 </span>    <span class="Identifier">}</span>);
+<span class="lnr">26 </span><span class="Identifier">}</span>);
+</pre>
+</body>
+</html>

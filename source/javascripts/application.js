@@ -41,6 +41,7 @@ $(document).ready(function () {
 
 $.fn.wallPost = function(message, callback, errback) {
   var options = $.extend(oajaxConfig, {
+      // http://redu.com.br/api/users/guiocavalcanti/statuses
       url: href_to('statuses', me['links']),
       type : 'post',
       data : { 'status' : { 'text' : message }},
